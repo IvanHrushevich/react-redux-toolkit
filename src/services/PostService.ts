@@ -13,5 +13,12 @@ export const postApi = createApi({
         },
       }),
     }),
+    createPost: build.mutation<Post, Post>({
+      query: (post: Post) => ({
+        url: '/posts',
+        method: 'POST',
+        body: post,
+      }),
+    }),
   }),
 });
