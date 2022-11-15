@@ -3,6 +3,7 @@ import { Post } from '../models/Post';
 
 export const postApi = createApi({
   reducerPath: 'postApi',
+  tagTypes: ['Post'],
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3002/' }),
   endpoints: (build) => ({
     fetchAllPosts: build.query<Post[], number>({
@@ -12,6 +13,7 @@ export const postApi = createApi({
           _limit: limit,
         },
       }),
+      providesTags: (result) => ['Post'],
     }),
     createPost: build.mutation<Post, Post>({
       query: (post: Post) => ({
@@ -19,6 +21,7 @@ export const postApi = createApi({
         method: 'POST',
         body: post,
       }),
+      invalidatesTags: ['Post'],
     }),
   }),
 });
