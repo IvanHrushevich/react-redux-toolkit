@@ -1,23 +1,14 @@
-import { useEffect } from 'react';
+import { FC } from 'react';
+import './App.css';
 
-import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { fetchUsers } from './store/reducers/ActionCreators';
+import PostsContainer from './components/PostsContainer';
 
-function App() {
-  const dispatch = useAppDispatch();
-  const { users, isLoading, error } = useAppSelector((state) => state.userReducer);
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
-
+const App: FC = () => {
   return (
-    <div>
-      {isLoading && <h2>Loading...</h2>}
-      {error && <h2>{error}</h2>}
-      {!isLoading && <pre>{JSON.stringify(users, null, 2)}</pre>}
+    <div className="container">
+      <PostsContainer />
     </div>
   );
-}
+};
 
 export default App;
